@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <title>UniverCell & ekō POS — Admin</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Glass Admin Styles -->
   <link rel="stylesheet" href="admin.css">
 </head>
 
@@ -13,50 +15,80 @@
     <div class="admin-card">
 
       <h1>Admin Dashboard</h1>
-      <p>UniverCell & ekō POS Control Panel</p>
+      <p class="subtitle">UniverCell & ekō POS Control Panel</p>
 
       <!-- CREATE STAFF -->
       <section class="section">
         <h3>Create Staff</h3>
 
-        <input id="staffEmail" type="email" placeholder="Staff email" />
-        <input id="staffPassword" type="password" placeholder="Password (min 6)" />
+        <input
+          id="staffEmail"
+          type="email"
+          placeholder="Staff email"
+        />
 
-        <button id="createStaffBtn" class="glass-btn">Create Staff</button>
-        <p id="staffMsg"></p>
-      </section>
+        <input
+          id="staffPassword"
+          type="password"
+          placeholder="Password (min 6)"
+        />
 
-      <!-- RESET PASSWORD -->
-      <section class="section">
-        <h3>Reset Staff Password</h3>
-
-        <input id="resetEmail" type="email" placeholder="Staff email" />
-        <button id="resetPasswordBtn" class="glass-btn secondary">
-          Send Reset Email
+        <button
+          id="createStaffBtn"
+          class="glass-btn">
+          Create Staff
         </button>
 
-        <p id="resetMsg"></p>
+        <p id="staffMsg" class="msg"></p>
       </section>
 
-      <!-- FUTURE ACTIONS -->
-      <section class="section">
+      <!-- RESET PASSWORD (CLEAN & SUBTLE) -->
+      <section class="section subtle">
+        <details class="reset-box">
+          <summary>Reset Staff Password</summary>
+
+          <input
+            id="resetEmail"
+            type="email"
+            placeholder="Staff email"
+          />
+
+          <button
+            id="resetPasswordBtn"
+            class="glass-btn subtle-btn">
+            Send Reset Email
+          </button>
+
+          <p id="resetMsg" class="msg"></p>
+        </details>
+      </section>
+
+      <!-- QUICK ACTIONS -->
+      <section class="section actions">
         <button class="glass-btn">View Sales</button>
         <button class="glass-btn">Manage Products</button>
       </section>
 
       <!-- LOGOUT -->
-      <button id="logoutBtn" class="logout-btn">Logout</button>
+      <button id="logoutBtn" class="logout-btn">
+        Logout
+      </button>
 
     </div>
   </div>
 
-  <!-- PROTECTION -->
+  <!-- ADMIN GUARD -->
   <script type="module" src="js/admin-guard.js"></script>
 
-  <!-- LOGIC -->
+  <!-- CREATE STAFF -->
   <script type="module" src="js/create-staff.js"></script>
+
+  <!-- PASSWORD RESET -->
   <script type="module" src="js/reset-password.js"></script>
+
+  <!-- LOGOUT -->
   <script type="module" src="js/logout.js"></script>
 
 </body>
 </html>
+
