@@ -4,8 +4,6 @@
   <meta charset="UTF-8" />
   <title>UniverCell & ekō POS — Admin</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- Glass Admin Styles -->
   <link rel="stylesheet" href="admin.css">
 </head>
 
@@ -15,39 +13,36 @@
     <div class="admin-card">
 
       <h1>Admin Dashboard</h1>
-      <p>Welcome to UniverCell & ekō POS</p>
+      <p>UniverCell & ekō POS Control Panel</p>
 
-      <!-- CREATE STAFF SECTION -->
-      <div class="admin-actions">
-
+      <!-- CREATE STAFF -->
+      <section class="section">
         <h3>Create Staff</h3>
 
-        <input
-          id="staffEmail"
-          type="email"
-          placeholder="Staff email"
-        />
+        <input id="staffEmail" type="email" placeholder="Staff email" />
+        <input id="staffPassword" type="password" placeholder="Password (min 6)" />
 
-        <input
-          id="staffPassword"
-          type="password"
-          placeholder="Password"
-        />
+        <button id="createStaffBtn" class="glass-btn">Create Staff</button>
+        <p id="staffMsg"></p>
+      </section>
 
-        <button
-          id="createStaffBtn"
-          class="glass-btn">
-          Create Staff
+      <!-- RESET PASSWORD -->
+      <section class="section">
+        <h3>Reset Staff Password</h3>
+
+        <input id="resetEmail" type="email" placeholder="Staff email" />
+        <button id="resetPasswordBtn" class="glass-btn secondary">
+          Send Reset Email
         </button>
 
-        <p id="staffMsg"></p>
+        <p id="resetMsg"></p>
+      </section>
 
-        <hr style="opacity:0.3; margin:22px 0">
-
+      <!-- FUTURE ACTIONS -->
+      <section class="section">
         <button class="glass-btn">View Sales</button>
         <button class="glass-btn">Manage Products</button>
-
-      </div>
+      </section>
 
       <!-- LOGOUT -->
       <button id="logoutBtn" class="logout-btn">Logout</button>
@@ -55,13 +50,12 @@
     </div>
   </div>
 
-  <!-- ADMIN GUARD (protects this page) -->
+  <!-- PROTECTION -->
   <script type="module" src="js/admin-guard.js"></script>
 
-  <!-- STAFF CREATION LOGIC -->
+  <!-- LOGIC -->
   <script type="module" src="js/create-staff.js"></script>
-
-  <!-- LOGOUT LOGIC -->
+  <script type="module" src="js/reset-password.js"></script>
   <script type="module" src="js/logout.js"></script>
 
 </body>
