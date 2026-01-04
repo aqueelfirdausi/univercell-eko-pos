@@ -2,18 +2,31 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>POS</title>
+  <title>UniverCell POS</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="pos.css">
 </head>
+
 <body>
 
-  <h1>🧾 POS System</h1>
-  <p>Welcome to UniverCell POS</p>
+  <div class="pos-container">
+    <div class="pos-card">
 
-  <button id="logoutBtn">Logout</button>
+      <h1>POS Terminal</h1>
+      <p>Ready for billing</p>
 
-  <!-- Guards -->
-  <script type="module" src="./js/pos-guard.js"></script>
-  <script type="module" src="./js/logout.js"></script>
+      <div class="pos-area">
+        <div class="placeholder">🧾 Cart area</div>
+        <div class="placeholder">💳 Payment area</div>
+      </div>
+
+      <button id="logoutBtn" class="logout-btn">Logout</button>
+
+    </div>
+  </div>
+
+  <script type="module" src="js/pos-guard.js"></script>
+  <script type="module" src="js/logout.js"></script>
 
 </body>
 </html>
