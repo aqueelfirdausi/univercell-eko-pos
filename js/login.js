@@ -1,7 +1,5 @@
-import { auth } from "./firebase.js";
-import {
-  signInWithEmailAndPassword
-} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getAuth, signInWithEmailAndPassword } from
+  "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
 import {
   getFirestore,
@@ -9,55 +7,40 @@ import {
   getDoc
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
+const auth = getAuth();
 const db = getFirestore();
 
-// ✅ FIXED ELEMENT REFERENCES
-const emailInput = document.getElementById("emailInput");
-const passwordInput = document.getElementById("passwordInput");
-const loginBtn = document.getElementById("loginBtn");
-const loginMsg = document.getElementById("loginMsg");
+const emailInput = document.getElementById("email");
+const passInput = document.getElementById("password");
+const msg = document.getElementById("msg");
+const btn = document.getElementById("loginBtn");
 
-loginBtn.addEventListener("click", async () => {
-  loginMsg.innerText = "";
+btn.onclick = async () => {
+  msg.innerText = "";
 
   try {
-    const email = emailInput.value.trim();
-    const password = passwordInput.value.trim();
-
-    if (!email || !password) {
-      loginMsg.innerText = "Please enter email and password";
-      return;
-    }
-
-    // 🔐 Firebase Auth Login
     const cred = await signInWithEmailAndPassword(
       auth,
-      email,
-      password
+      emailInput.value,
+      passInput.value
     );
 
-    // 🔎 Fetch user role from Firestore
-    const userSnap = await getDoc(
-      doc(db, "users", cred.user.uid)
-    );
+    const snap = await getDoc(doc(db, "users", cred.user.uid));
 
-    if (!userSnap.exists()) {
-      loginMsg.innerText = "User profile not found";
+    if (!snap.exists()) {
+      msg.innerText = "User profile not found";
       return;
     }
 
-    const role = userSnap.data().role;
+    const role = snap.data().role;
 
-    // 🔁 ROLE BASED REDIRECT
     if (role === "admin") {
       window.location.href = "index.html";
-    } else if (role === "staff") {
-      window.location.href = "pos.html";
     } else {
-      loginMsg.innerText = "Invalid role";
+      window.location.href = "pos.html";
     }
 
-  } catch (err) {
-    loginMsg.innerText = err.message;
+  } catch (e) {
+    msg.innerText = e.message;
   }
-});
+};
