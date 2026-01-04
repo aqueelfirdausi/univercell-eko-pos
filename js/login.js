@@ -1,38 +1,63 @@
 import { auth } from "./firebase.js";
-import { signInWithEmailAndPassword } from
-  "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import {
+  signInWithEmailAndPassword
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
-import { getFirestore, doc, getDoc } from
-  "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import {
+  getFirestore,
+  doc,
+  getDoc
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const db = getFirestore();
 
+// ✅ FIXED ELEMENT REFERENCES
+const emailInput = document.getElementById("emailInput");
+const passwordInput = document.getElementById("passwordInput");
 const loginBtn = document.getElementById("loginBtn");
-const message = document.getElementById("message");
+const loginMsg = document.getElementById("loginMsg");
 
-loginBtn.onclick = async () => {
+loginBtn.addEventListener("click", async () => {
+  loginMsg.innerText = "";
+
   try {
-    const email = emailInput.value;
-    const password = passwordInput.value;
+    const email = emailInput.value.trim();
+    const password = passwordInput.value.trim();
 
-    const cred = await signInWithEmailAndPassword(auth, email, password);
-
-    const snap = await getDoc(doc(db, "users", cred.user.uid));
-
-    if (!snap.exists()) {
-      message.innerText = "User profile not found";
+    if (!email || !password) {
+      loginMsg.innerText = "Please enter email and password";
       return;
     }
 
-    const role = snap.data().role;
+    // 🔐 Firebase Auth Login
+    const cred = await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
 
-    if (role === "admin") {
-      window.location.href = "index.html";
-    } else {
-      window.location.href = "pos.html";
+    // 🔎 Fetch user role from Firestore
+    const userSnap = await getDoc(
+      doc(db, "users", cred.user.uid)
+    );
+
+    if (!userSnap.exists()) {
+      loginMsg.innerText = "User profile not found";
+      return;
     }
 
-  } catch (e) {
-    message.innerText = e.message;
+    const role = userSnap.data().role;
+
+    // 🔁 ROLE BASED REDIRECT
+    if (role === "admin") {
+      window.location.href = "index.html";
+    } else if (role === "staff") {
+      window.location.href = "pos.html";
+    } else {
+      loginMsg.innerText = "Invalid role";
+    }
+
+  } catch (err) {
+    loginMsg.innerText = err.message;
   }
-};
+});
