@@ -9,22 +9,13 @@ const db = getFirestore();
 
 onAuthStateChanged(auth, async (user) => {
   if (!user) {
-    window.location.replace("login.html");
+    window.location.href = "login.html";
     return;
   }
 
-  const userRef = doc(db, "users", user.uid);
-  const snap = await getDoc(userRef);
+  const snap = await getDoc(doc(db, "users", user.uid));
 
-  if (!snap.exists()) {
-    window.location.replace("login.html");
-    return;
-  }
-
-  const data = snap.data();
-
-  if (data.role !== "admin") {
-    alert("Access denied");
-    window.location.replace("login.html");
+  if (!snap.exists() || snap.data().role !== "admin") {
+    window.location.href = "login.html";
   }
 });
