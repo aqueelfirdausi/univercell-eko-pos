@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <title>UniverCell POS</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <link rel="stylesheet" href="pos.css">
 </head>
 
@@ -12,20 +13,29 @@
   <div class="pos-container">
     <div class="pos-card">
 
-      <h1>POS Terminal</h1>
-      <p>Ready for billing</p>
+      <h1>POS</h1>
+      <p class="subtitle">UniverCell & ekō Sales</p>
 
-      <div class="pos-area">
-        <div class="placeholder">🧾 Cart area</div>
-        <div class="placeholder">💳 Payment area</div>
-      </div>
+      <input id="product" placeholder="Product name" />
+      <input id="quantity" type="number" placeholder="Quantity" />
+      <input id="price" type="number" placeholder="Price" />
+
+      <button id="sellBtn" class="glass-btn">Complete Sale</button>
+
+      <p id="saleMsg" class="msg"></p>
 
       <button id="logoutBtn" class="logout-btn">Logout</button>
 
     </div>
   </div>
 
+  <!-- STAFF GUARD -->
   <script type="module" src="js/pos-guard.js"></script>
+
+  <!-- SALES LOGIC -->
+  <script type="module" src="js/sales.js"></script>
+
+  <!-- LOGOUT -->
   <script type="module" src="js/logout.js"></script>
 
 </body>
