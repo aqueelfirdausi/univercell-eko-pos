@@ -1,14 +1,8 @@
-import { getAuth, onAuthStateChanged } from
+import { auth, db } from "./firebase.js";
+import { onAuthStateChanged } from
   "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-
-import {
-  getFirestore,
-  doc,
-  getDoc
-} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-
-const auth = getAuth();
-const db = getFirestore();
+import { doc, getDoc } from
+  "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 onAuthStateChanged(auth, async (user) => {
   if (!user) {
@@ -18,14 +12,7 @@ onAuthStateChanged(auth, async (user) => {
 
   const snap = await getDoc(doc(db, "users", user.uid));
 
-  if (!snap.exists()) {
+  if (!snap.exists() || snap.data().role !== "admin") {
     window.location.href = "login.html";
-    return;
-  }
-
-  const role = snap.data().role;
-
-  if (role !== "admin") {
-    window.location.href = "pos.html";
   }
 });
