@@ -1,30 +1,30 @@
 import { auth } from "./firebase.js";
-import {
-  getFirestore,
-  doc,
-  getDoc
-} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { onAuthStateChanged } from
+  "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+import { getFirestore, doc, getDoc } from
+  "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const db = getFirestore();
 
-auth.onAuthStateChanged(async (user) => {
+onAuthStateChanged(auth, async (user) => {
   if (!user) {
-    window.location.href = "login.html";
+    window.location.replace("login.html");
     return;
   }
 
   const userRef = doc(db, "users", user.uid);
-  const userSnap = await getDoc(userRef);
+  const snap = await getDoc(userRef);
 
-  if (!userSnap.exists()) {
-    window.location.href = "login.html";
+  if (!snap.exists()) {
+    window.location.replace("login.html");
     return;
   }
 
-  const userData = userSnap.data();
+  const data = snap.data();
 
-  if (userData.role !== "admin") {
+  if (data.role !== "admin") {
     alert("Access denied");
-    window.location.href = "login.html";
+    window.location.replace("login.html");
   }
 });
