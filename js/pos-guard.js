@@ -1,9 +1,13 @@
 import { auth } from "./firebase.js";
-import { onAuthStateChanged } from
-  "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import {
+  onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
-import { getFirestore, doc, getDoc } from
-  "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import {
+  getFirestore,
+  doc,
+  getDoc
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const db = getFirestore();
 
@@ -15,7 +19,15 @@ onAuthStateChanged(auth, async (user) => {
 
   const snap = await getDoc(doc(db, "users", user.uid));
 
-  if (!snap.exists() || snap.data().role !== "staff") {
+  if (!snap.exists()) {
+    window.location.href = "login.html";
+    return;
+  }
+
+  const role = snap.data().role;
+
+  // ✅ ALLOW BOTH ADMIN & STAFF
+  if (role !== "admin" && role !== "staff") {
     window.location.href = "login.html";
   }
 });
