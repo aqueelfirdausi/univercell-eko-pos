@@ -1,30 +1,26 @@
-import { getAuth, signInWithEmailAndPassword } 
-  from
-  "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { auth, db } from "./firebase.js";
+import {
+  signInWithEmailAndPassword
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
 import {
-  getFirestore,
   doc,
   getDoc
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-const auth = getAuth();
-const db = getFirestore();
-
 const emailInput = document.getElementById("email");
-const passInput = document.getElementById("password");
+const passwordInput = document.getElementById("password");
+const loginBtn = document.getElementById("loginBtn");
 const msg = document.getElementById("msg");
-const btn = document.getElementById("loginBtn");
 
-btn.onclick = async () => {
+loginBtn.onclick = async () => {
   msg.innerText = "";
 
   try {
-    const cred = await signInWithEmailAndPassword(
-      auth,
-      emailInput.value,
-      passInput.value
-    );
+    const email = emailInput.value.trim();
+    const password = passwordInput.value.trim();
+
+    const cred = await signInWithEmailAndPassword(auth, email, password);
 
     const snap = await getDoc(doc(db, "users", cred.user.uid));
 
@@ -37,8 +33,10 @@ btn.onclick = async () => {
 
     if (role === "admin") {
       window.location.href = "index.html";
-    } else {
+    } else if (role === "staff") {
       window.location.href = "pos.html";
+    } else {
+      msg.innerText = "Invalid role";
     }
 
   } catch (e) {
