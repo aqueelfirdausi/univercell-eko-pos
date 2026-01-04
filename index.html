@@ -23,7 +23,10 @@
         <input id="staffEmail" type="email" placeholder="Staff email" />
         <input id="staffPassword" type="password" placeholder="Password (min 6)" />
 
-        <button id="createStaffBtn" class="glass-btn">Create Staff</button>
+        <button id="createStaffBtn" class="glass-btn">
+          Create Staff
+        </button>
+
         <p id="staffMsg" class="msg"></p>
       </section>
 
@@ -33,6 +36,7 @@
           <summary>Reset Staff Password</summary>
 
           <input id="resetEmail" type="email" placeholder="Staff email" />
+
           <button id="resetPasswordBtn" class="glass-btn subtle-btn">
             Send Reset Email
           </button>
@@ -53,12 +57,14 @@
       </section>
 
       <!-- LOGOUT -->
-      <button id="logoutBtn" class="logout-btn">Logout</button>
+      <button id="logoutBtn" class="logout-btn">
+        Logout
+      </button>
 
     </div>
   </div>
 
-  <!-- GUARDS & LOGIC -->
+  <!-- LOGIC -->
   <script type="module" src="js/admin-guard.js"></script>
   <script type="module" src="js/create-staff.js"></script>
   <script type="module" src="js/reset-password.js"></script>
