@@ -1,0 +1,51 @@
+* {
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
+    "Segoe UI", sans-serif;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(135deg, #141e30, #243b55);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pos-card {
+  width: 420px;
+  padding: 30px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 25px 45px rgba(0,0,0,.35);
+  color: white;
+  text-align: center;
+}
+
+.pos-area {
+  display: flex;
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.placeholder {
+  flex: 1;
+  padding: 30px 10px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.18);
+  font-size: 14px;
+}
+
+.logout-btn {
+  padding: 14px;
+  width: 100%;
+  border-radius: 18px;
+  border: none;
+  background: linear-gradient(135deg, #ff416c, #ff4b2b);
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
