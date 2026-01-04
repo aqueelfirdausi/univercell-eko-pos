@@ -1,7 +1,5 @@
-import { auth } from "./firebase.js";
-import {
-  createUserWithEmailAndPassword
-} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getAuth, createUserWithEmailAndPassword } from
+  "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
 import {
   getFirestore,
@@ -10,42 +8,32 @@ import {
   serverTimestamp
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
+const auth = getAuth();
 const db = getFirestore();
 
-const staffEmail = document.getElementById("staffEmail");
-const staffPassword = document.getElementById("staffPassword");
-const createStaffBtn = document.getElementById("createStaffBtn");
-const staffMsg = document.getElementById("staffMsg");
+const emailInput = document.getElementById("staffEmail");
+const passInput = document.getElementById("staffPassword");
+const btn = document.getElementById("createStaffBtn");
+const msg = document.getElementById("staffMsg");
 
-createStaffBtn.onclick = async () => {
-  staffMsg.innerText = "";
+btn.onclick = async () => {
+  msg.innerText = "";
 
   try {
-    const email = staffEmail.value.trim();
-    const password = staffPassword.value.trim();
-
-    if (!email || password.length < 6) {
-      staffMsg.innerText = "Invalid email or password";
-      return;
-    }
-
     const cred = await createUserWithEmailAndPassword(
       auth,
-      email,
-      password
+      emailInput.value,
+      passInput.value
     );
 
     await setDoc(doc(db, "users", cred.user.uid), {
-      email,
+      email: emailInput.value,
       role: "staff",
       createdAt: serverTimestamp()
     });
 
-    staffMsg.innerText = "✅ Staff created successfully";
-    staffEmail.value = "";
-    staffPassword.value = "";
-
+    msg.innerText = "✅ Staff created successfully";
   } catch (e) {
-    staffMsg.innerText = e.message;
+    msg.innerText = e.message;
   }
 };
