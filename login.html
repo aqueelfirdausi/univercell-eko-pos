@@ -3,39 +3,42 @@
 <head>
   <meta charset="UTF-8" />
   <title>UniverCell POS Login</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="stylesheet" href="login.css" />
-
-  <script type="module" src="./js/firebase.js"></script>
-  <script type="module" src="./js/login.js"></script>
+  <!-- Login Glass UI -->
+  <link rel="stylesheet" href="login.css">
 </head>
 
 <body>
 
   <div class="login-container">
     <div class="login-card">
-      <h1>UniverCell POS</h1>
+
+      <h2>UniverCell POS</h2>
 
       <input
+        id="emailInput"
         type="email"
-        id="email"
-        placeholder="Email address"
-        autocomplete="username"
+        placeholder="Email"
       />
 
       <input
+        id="passwordInput"
         type="password"
-        id="password"
         placeholder="Password"
-        autocomplete="current-password"
       />
 
-      <button id="loginBtn">Login</button>
+      <button id="loginBtn" class="glass-btn">
+        Login
+      </button>
 
-      <p id="message"></p>
+      <p id="loginMsg" class="msg"></p>
+
     </div>
   </div>
+
+  <!-- LOGIN LOGIC -->
+  <script type="module" src="js/login.js"></script>
 
 </body>
 </html>
