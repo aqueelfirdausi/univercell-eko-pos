@@ -5,7 +5,6 @@
   <title>UniverCell & ekō POS — Admin</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Glass Admin Styles -->
   <link rel="stylesheet" href="admin.css">
 </head>
 
@@ -21,41 +20,20 @@
       <section class="section">
         <h3>Create Staff</h3>
 
-        <input
-          id="staffEmail"
-          type="email"
-          placeholder="Staff email"
-        />
+        <input id="staffEmail" type="email" placeholder="Staff email" />
+        <input id="staffPassword" type="password" placeholder="Password (min 6)" />
 
-        <input
-          id="staffPassword"
-          type="password"
-          placeholder="Password (min 6)"
-        />
-
-        <button
-          id="createStaffBtn"
-          class="glass-btn">
-          Create Staff
-        </button>
-
+        <button id="createStaffBtn" class="glass-btn">Create Staff</button>
         <p id="staffMsg" class="msg"></p>
       </section>
 
-      <!-- RESET PASSWORD (CLEAN & SUBTLE) -->
+      <!-- RESET PASSWORD -->
       <section class="section subtle">
         <details class="reset-box">
           <summary>Reset Staff Password</summary>
 
-          <input
-            id="resetEmail"
-            type="email"
-            placeholder="Staff email"
-          />
-
-          <button
-            id="resetPasswordBtn"
-            class="glass-btn subtle-btn">
+          <input id="resetEmail" type="email" placeholder="Staff email" />
+          <button id="resetPasswordBtn" class="glass-btn subtle-btn">
             Send Reset Email
           </button>
 
@@ -63,32 +41,28 @@
         </details>
       </section>
 
-      <!-- QUICK ACTIONS -->
+      <!-- ACTIONS -->
       <section class="section actions">
-        <button class="glass-btn">View Sales</button>
-        <button class="glass-btn">Manage Products</button>
+        <button class="glass-btn" onclick="location.href='sales.html'">
+          View Sales
+        </button>
+
+        <button class="glass-btn" onclick="location.href='products.html'">
+          Manage Products
+        </button>
       </section>
 
       <!-- LOGOUT -->
-      <button id="logoutBtn" class="logout-btn">
-        Logout
-      </button>
+      <button id="logoutBtn" class="logout-btn">Logout</button>
 
     </div>
   </div>
 
-  <!-- ADMIN GUARD -->
+  <!-- GUARDS & LOGIC -->
   <script type="module" src="js/admin-guard.js"></script>
-
-  <!-- CREATE STAFF -->
   <script type="module" src="js/create-staff.js"></script>
-
-  <!-- PASSWORD RESET -->
   <script type="module" src="js/reset-password.js"></script>
-
-  <!-- LOGOUT -->
   <script type="module" src="js/logout.js"></script>
 
 </body>
 </html>
-
