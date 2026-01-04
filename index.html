@@ -1,10 +1,39 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>UniverCell & ekō POS</title>
-  <meta http-equiv="refresh" content="0; url=login.html">
+  <meta charset="UTF-8" />
+  <title>UniverCell & ekō POS — Admin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Admin Glass Styles -->
+  <link rel="stylesheet" href="admin.css">
 </head>
+
 <body>
-  <p>Redirecting to login…</p>
+
+  <div class="admin-container">
+    <div class="admin-card">
+
+      <h1>Admin Dashboard</h1>
+      <p>Welcome to UniverCell & ekō POS</p>
+
+      <div class="admin-actions">
+        <button class="glass-btn">Create Staff</button>
+        <button class="glass-btn">View Sales</button>
+        <button class="glass-btn">Manage Products</button>
+      </div>
+
+      <button id="logoutBtn" class="logout-btn">Logout</button>
+
+    </div>
+  </div>
+
+  <!-- Admin Guard -->
+  <script type="module" src="js/admin-guard.js"></script>
+
+  <!-- Logout -->
+  <script type="module" src="js/logout.js"></script>
+
 </body>
 </html>
+
