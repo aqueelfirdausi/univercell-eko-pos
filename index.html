@@ -5,7 +5,7 @@
   <title>UniverCell & ekō POS — Admin</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Admin Glass Styles -->
+  <!-- Glass Admin Styles -->
   <link rel="stylesheet" href="admin.css">
 </head>
 
@@ -17,23 +17,52 @@
       <h1>Admin Dashboard</h1>
       <p>Welcome to UniverCell & ekō POS</p>
 
+      <!-- CREATE STAFF SECTION -->
       <div class="admin-actions">
-        <button class="glass-btn">Create Staff</button>
+
+        <h3>Create Staff</h3>
+
+        <input
+          id="staffEmail"
+          type="email"
+          placeholder="Staff email"
+        />
+
+        <input
+          id="staffPassword"
+          type="password"
+          placeholder="Password"
+        />
+
+        <button
+          id="createStaffBtn"
+          class="glass-btn">
+          Create Staff
+        </button>
+
+        <p id="staffMsg"></p>
+
+        <hr style="opacity:0.3; margin:22px 0">
+
         <button class="glass-btn">View Sales</button>
         <button class="glass-btn">Manage Products</button>
+
       </div>
 
+      <!-- LOGOUT -->
       <button id="logoutBtn" class="logout-btn">Logout</button>
 
     </div>
   </div>
 
-  <!-- Admin Guard -->
+  <!-- ADMIN GUARD (protects this page) -->
   <script type="module" src="js/admin-guard.js"></script>
 
-  <!-- Logout -->
+  <!-- STAFF CREATION LOGIC -->
+  <script type="module" src="js/create-staff.js"></script>
+
+  <!-- LOGOUT LOGIC -->
   <script type="module" src="js/logout.js"></script>
 
 </body>
 </html>
-
