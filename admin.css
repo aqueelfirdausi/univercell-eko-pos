@@ -1,105 +1,93 @@
-* {
-  box-sizing: border-box;
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
-    "Segoe UI", sans-serif;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>UniverCell & ekō POS — Admin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-body {
-  margin: 0;
-  min-height: 100vh;
-  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+  <!-- Glass Admin Styles -->
+  <link rel="stylesheet" href="admin.css">
+</head>
 
-/* Layout */
-.admin-container {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  padding: 20px;
-}
+<body>
 
-/* Glass Card */
-.admin-card {
-  width: 420px;
-  padding: 28px;
-  border-radius: 24px;
-  background: rgba(255, 255, 255, 0.16);
-  backdrop-filter: blur(18px);
-  box-shadow: 0 30px 50px rgba(0,0,0,.35);
-  color: white;
-}
+  <div class="admin-container">
+    <div class="admin-card">
 
-/* Titles */
-.admin-card h1 {
-  text-align: center;
-  font-size: 22px;
-  margin-bottom: 6px;
-}
+      <h1>Admin Dashboard</h1>
+      <p class="subtitle">UniverCell & ekō POS Control Panel</p>
 
-.admin-card p {
-  text-align: center;
-  font-size: 14px;
-  opacity: 0.85;
-  margin-bottom: 20px;
-}
+      <!-- CREATE STAFF -->
+      <section class="section">
+        <h3>Create Staff</h3>
 
-/* Sections */
-.section {
-  margin-bottom: 20px;
-}
+        <input
+          id="staffEmail"
+          type="email"
+          placeholder="Staff email"
+        />
 
-.section h3 {
-  font-size: 15px;
-  margin-bottom: 10px;
-}
+        <input
+          id="staffPassword"
+          type="password"
+          placeholder="Password (min 6)"
+        />
 
-/* Inputs */
-.section input {
-  width: 100%;
-  padding: 14px;
-  margin-bottom: 10px;
-  border-radius: 14px;
-  border: none;
-  font-size: 14px;
-}
+        <button
+          id="createStaffBtn"
+          class="glass-btn">
+          Create Staff
+        </button>
 
-/* Buttons */
-.glass-btn {
-  width: 100%;
-  padding: 14px;
-  border-radius: 16px;
-  border: none;
-  font-size: 14px;
-  font-weight: 600;
-  color: white;
-  background: rgba(255,255,255,0.18);
-  backdrop-filter: blur(10px);
-  cursor: pointer;
-  margin-bottom: 8px;
-  transition: transform .15s ease, background .15s ease;
-}
+        <p id="staffMsg" class="msg"></p>
+      </section>
 
-.glass-btn:hover {
-  transform: scale(1.02);
-  background: rgba(255,255,255,0.28);
-}
+      <!-- RESET PASSWORD (CLEAN & SUBTLE) -->
+      <section class="section subtle">
+        <details class="reset-box">
+          <summary>Reset Staff Password</summary>
 
-.glass-btn.secondary {
-  background: rgba(255,255,255,0.12);
-}
+          <input
+            id="resetEmail"
+            type="email"
+            placeholder="Staff email"
+          />
 
-/* Logout */
-.logout-btn {
-  width: 100%;
-  padding: 14px;
-  border-radius: 18px;
-  border: none;
-  font-size: 15px;
-  font-weight: 600;
-  background: linear-gradient(135deg, #ff416c, #ff4b2b);
-  color: white;
-  cursor: pointer;
-}
+          <button
+            id="resetPasswordBtn"
+            class="glass-btn subtle-btn">
+            Send Reset Email
+          </button>
+
+          <p id="resetMsg" class="msg"></p>
+        </details>
+      </section>
+
+      <!-- QUICK ACTIONS -->
+      <section class="section actions">
+        <button class="glass-btn">View Sales</button>
+        <button class="glass-btn">Manage Products</button>
+      </section>
+
+      <!-- LOGOUT -->
+      <button id="logoutBtn" class="logout-btn">
+        Logout
+      </button>
+
+    </div>
+  </div>
+
+  <!-- ADMIN GUARD -->
+  <script type="module" src="js/admin-guard.js"></script>
+
+  <!-- CREATE STAFF -->
+  <script type="module" src="js/create-staff.js"></script>
+
+  <!-- PASSWORD RESET -->
+  <script type="module" src="js/reset-password.js"></script>
+
+  <!-- LOGOUT -->
+  <script type="module" src="js/logout.js"></script>
+
+</body>
+</html>
